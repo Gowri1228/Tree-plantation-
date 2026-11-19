@@ -1,4 +1,5 @@
 
+
 const weeks = [
   {
     title: "Week 1 – Introduction to Tree Plantation",
@@ -38,10 +39,12 @@ const weeks = [
   }
 ];
 
+// Six Weeks Activities Section
+
 const activitiesContainer =
   document.getElementById("weeklyActivities");
 
-weeks.forEach((week, index) => {
+weeks.forEach((week) => {
   const card = document.createElement("div");
   card.className = "week-card";
 
@@ -76,40 +79,39 @@ weeks.forEach((week, index) => {
   activitiesContainer.appendChild(card);
 });
 
-// Six weeks photo gallery
+// Main Gallery – Only 6 Photos
 
 const galleryContainer =
   document.getElementById("photoGallery");
 
-for (let week = 1; week <= 6; week++) {
-  for (let photo = 1; photo <= 2; photo++) {
-    const card = document.createElement("div");
-    card.className = "gallery-card";
+const galleryPhotos = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg",
+  "images/photo4.jpg",
+  "images/photo5.jpg",
+  "images/photo6.jpg"
+];
 
-    const image = document.createElement("img");
+galleryPhotos.forEach((src, index) => {
+  const card = document.createElement("div");
+  card.className = "gallery-card";
 
-    image.src = `images/week${week}-photo${photo}.jpg`;
-    image.alt = `Week ${week} tree plantation activity photo ${photo}`;
-    image.loading = "lazy";
+  const image = document.createElement("img");
+  image.src = src;
+  image.alt = `Tree Plantation Project Photo ${index + 1}`;
+  image.loading = "lazy";
 
-    image.onerror = () => {
-      image.alt = "Upload your activity photo to the images folder";
-      image.style.objectFit = "contain";
-    };
+  image.onerror = () => {
+    image.alt = "Please upload the correct activity photo";
+  };
 
-    image.addEventListener("click", () => {
-      if (image.complete && image.naturalWidth > 0) {
-        window.open(image.src, "_blank", "noopener");
-      }
-    });
+  image.addEventListener("click", () => {
+    if (image.complete && image.naturalWidth > 0) {
+      window.open(image.src, "_blank", "noopener");
+    }
+  });
 
-    const heading = document.createElement("h3");
-    heading.textContent = `🌳 Week ${week} – Photo ${photo}`;
-
-    card.appendChild(image);
-    card.appendChild(heading);
-
-    galleryContainer.appendChild(card);
-  }
-}
-
+  card.appendChild(image);
+  galleryContainer.appendChild(card);
+});
