@@ -1,5 +1,4 @@
 
-
 const weeks = [
   {
     title: "Week 1 – Introduction to Tree Plantation",
@@ -39,7 +38,7 @@ const weeks = [
   }
 ];
 
-// Six Weeks Activities Section
+// Display Six Weeks Activities
 
 const activitiesContainer =
   document.getElementById("weeklyActivities");
@@ -79,18 +78,18 @@ weeks.forEach((week) => {
   activitiesContainer.appendChild(card);
 });
 
-// Main Gallery – Only 6 Photos
+// Gallery – Only 6 Photos
 
 const galleryContainer =
   document.getElementById("photoGallery");
 
 const galleryPhotos = [
-  "images/photo1.jpg",
-  "images/photo2.jpg",
-  "images/photo3.jpg",
-  "images/photo4.jpg",
-  "images/photo5.jpg",
-  "images/photo6.jpg"
+  "photo1.jpg",
+  "photo2.jpg",
+  "photo3.jpg",
+  "photo4.jpg",
+  "photo5.jpg",
+  "photo6.jpg"
 ];
 
 galleryPhotos.forEach((src, index) => {
@@ -98,12 +97,13 @@ galleryPhotos.forEach((src, index) => {
   card.className = "gallery-card";
 
   const image = document.createElement("img");
+
   image.src = src;
-  image.alt = `Tree Plantation Project Photo ${index + 1}`;
+  image.alt = `Tree Plantation Photo ${index + 1}`;
   image.loading = "lazy";
 
   image.onerror = () => {
-    image.alt = "Please upload the correct activity photo";
+    image.alt = "Photo not found. Check the image filename.";
   };
 
   image.addEventListener("click", () => {
@@ -112,6 +112,13 @@ galleryPhotos.forEach((src, index) => {
     }
   });
 
+  const heading = document.createElement("h3");
+  heading.textContent = `🌳 Photo ${index + 1}`;
+
   card.appendChild(image);
+  card.appendChild(heading);
+
   galleryContainer.appendChild(card);
 });
+
+
